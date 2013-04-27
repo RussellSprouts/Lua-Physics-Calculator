@@ -215,3 +215,6 @@ mass_neutron = 1.67262e-27*kg
 mass_proton = 1.67492e-27*kg
 epsilon_0 = 8.854e-12*C^2/(N*m^2)
 k = 1/4*math.pi*epsilon_0
+
+-- USER VARIABLES:
+v = {} --use v.A, for example, so store an Area.
