@@ -205,16 +205,23 @@ amu = Unit('amu', 1.6605402e-27*kg)
 --CONVERSION UNITS
 mi = Unit('mi', 1609.344*m, true)
 ft = Unit('ft', mi/5280, true)
+yd = Unit('yd', 3*ft, true)
+inch = Unit('inch', ft/12, true)
+lb = Unit('lb', kg/2.20462262185, true)
+lbf = Unit('lbf', 4.4482216152605*N, true)
+hp = Unit('hp', 746*W, true)
 
 --PHYSICAL CONSTANTS
 lightspeed = 2.99792458e8*m/s
 e = eV/J*C
 G = 6.67259e-11*N*m^2/kg^2
+g_0 = 9.80665*N/kg
 mass_e = 9.10939e-31*kg
 mass_neutron = 1.67262e-27*kg
 mass_proton = 1.67492e-27*kg
 epsilon_0 = 8.854e-12*C^2/(N*m^2)
 k = 1/4*math.pi*epsilon_0
+N_A = 6.02214129e23/mol
 
 -- USER VARIABLES:
 v = {} --use v.A, for example, so store an Area.
