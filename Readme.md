@@ -11,7 +11,7 @@ that handles units correctly.
 Installation:
 ==============================
 You need Lua and the Lua Standard Library.
-(Lua for Windows)[https://code.google.com/p/luaforwindows/] includes this.
+[Lua for Windows](https://code.google.com/p/luaforwindows/) includes this.
 Add the command line enter:
 
     > lua -i physics.lua
@@ -39,7 +39,7 @@ Setting a distance to be .1 mm.
 Using C = epsilon_0*A/d for parallel plate capacitors to find the
 capacitance in this situation.
 
-    > v.C = ε_0*v.A/v.d
+    > v.C = epsilon_0*v.A/v.d
 
 This value is correct, but the units are confusing.
 
@@ -51,7 +51,7 @@ Convert the units to micro Farrads.
     > =v.C .. 'uF'
     0.4427uF
     
-You can use the Lua operators `+`, `-`, `*`, '/', and `^` with their normal mathematical meanings.
+You can use the Lua operators `+`, `-`, `*`, `/`, and `^` with their normal mathematical meanings.
 The operator `..` converts a value into certain units. For example, `1*mm..'km'` will
 give 1e-007km, the number of kilometers in a millimeter.
 

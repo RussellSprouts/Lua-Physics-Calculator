@@ -135,12 +135,10 @@ function BaseUnit(symbol)
 	return setmetatable({value=1, units={[symbol]=1}},DimensionedValueMetatable)
 end
 
-function Unit(symbol, definition, noPrefix)
+function Unit(symbol, definition)
   units[symbol] = definition
-	if not noPrefix then
-		for i, prefix in ipairs(prefixes) do
-			units[prefix..symbol] = definition*prefixes[prefix]
-		end
+  for i, prefix in ipairs(prefixes) do
+    units[prefix..symbol] = definition*prefixes[prefix]
 	end
 end
 setmetatable(_G,{__index=units})
@@ -188,28 +186,28 @@ lx = Unit('lx', lm/m^2)
 kat = Unit('kat',mol/s)
 
 --SI ACCEPTABLE UNITS
-min = Unit('min', 60*s, true)
-hr = Unit('hr', 60*min, true)
-day = Unit('day', 24*hr, true)
-deg = Unit('deg', math.pi/180*rad, true)
-ha = Unit('ha', 100*m*100*m, true)
+min = 60*s
+hr = 60*min
+day = 24*hr
+deg = math.pi/180*rad
+ha = 100*m*100*m
 L = Unit('L', dm^3)
-tonne = Unit('tonne', 1000*kg, true)
-Ang = Unit('Ang', 1e-10*m, true)
+tonne = 1000*kg
+Ang = 1e-10*m
 
 --SI EXPERIMENTAL UNITS
 eV = Unit('eV', 1.60217733e-19*J)
-amu = Unit('amu', 1.6605402e-27*kg)
+amu = 1.6605402e-27*kg
 
 
 --CONVERSION UNITS
-mi = Unit('mi', 1609.344*m, true)
-ft = Unit('ft', mi/5280, true)
-yd = Unit('yd', 3*ft, true)
-inch = Unit('inch', ft/12, true)
-lb = Unit('lb', kg/2.20462262185, true)
-lbf = Unit('lbf', 4.4482216152605*N, true)
-hp = Unit('hp', 746*W, true)
+mi = 1609.344*m
+ft = mi/5280
+yd = 3*ft  
+inch = ft/12  
+lb = kg/2.20462262185  
+lbf = 4.4482216152605*N  
+hp = 746*W  
 
 --PHYSICAL CONSTANTS
 lightspeed = 2.99792458e8*m/s
