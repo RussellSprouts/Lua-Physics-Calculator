@@ -29,16 +29,24 @@ Sample Usage:
     type help'topic' for information.
 
     > v.A = 5*m^2
+		
 Setting a variable *v.A* to be 5 square meters
+
     > v.d = .1*mm
 Setting a distance to be .1 mm.
+
     > v.C = epsilon_0*v.A/v.d
+		
 Using C = epsilon_0*A/d for parallel plate capacitors to find the
 capacitance in this situation.
+
     > =v.C
     4.427e-007*A^2*kg^-1*s^4*m^-2
+		
 This value is correct, but the units are confusing.
+
     > =v.C .. 'uF'
     0.4427uF
+		
 Convert the units to micro Farrads.
 		
