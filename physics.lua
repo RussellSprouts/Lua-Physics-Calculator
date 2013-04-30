@@ -45,19 +45,24 @@ PREFIXES:]]
 	end
 end
 
+local function checkUnitsMatch(a,b)
+  for k,v in pairs(a.units)do
+    if b.units[k]~=v and v~=0 then
+      return "WARNING: Adding values with unlike units"
+    end
+  end
+  for k,v in pairs(b.units)do
+    if a.units[k]~=v and v~= 0 then
+      return "WARNING: Adding values with unlike units"
+    end
+  end
+  return ''
+end
+
 local DimensionedValueMetatable = {
   __add = function(a,b)
 	  a = table.deep_copy(a)
-		for k,v in pairs(a.units)do
-		  if b.units[k]~=v then
-			  print"WARNING: Adding values with unlike units"
-			end
-		end
-		for k,v in pairs(b.units)do
-		  if a.units[k]~=v then
-			  print"WARNING: Adding values with unlike units"
-			end
-		end
+    io.write(checkUnitsMatch(a,b))
 		a.value = a.value + b.value
 		return a
 	end,
@@ -100,22 +105,17 @@ local DimensionedValueMetatable = {
 		assert(type(bString)=='string')
 	  a = table.deep_copy(a)
 		local b = assert(loadstring('return '..bString))()
-		for k,v in pairs(a.units)do
-		  if b.units[k]~=v then
-			  return"ERROR: Cannot convert these units. ====================="
-			end
-		end
-		for k,v in pairs(b.units)do
-		  if a.units[k]~=v then
-			  return"ERROR: Cannot convert these units. ====================="
-			end
-		end
+		if checkUnitsMatch(a,b) ~= '' then
+      return "ERROR: Units do not match"
+    end
 		return a.value/b.value .. bString
 	end,
 	__tostring = function(a)
 	  local units = ''
 		for k,v in pairs(a.units) do
-		  units = units..'*'..k..(v==1 and '' or '^'..v)
+      if v~=0 then
+		    units = units..'*'..k..(v==1 and '' or '^'..v)
+      end
 		end
 	  return a.value..units
 	end
